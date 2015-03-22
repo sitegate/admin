@@ -4,6 +4,7 @@
 var passport = require('passport');
 var SiteGateStrategy = require('passport-sitegate');
 var config = require('./config');
+var User = require('../clients/user');
 
 module.exports = function () {
   passport.serializeUser(function (user, done) {
@@ -26,30 +27,9 @@ module.exports = function () {
       callbackURL: config.sitegate.callbackURL
     },
     function (accessToken, refreshToken, profile, done) {
-      User.findOne({
-        sitegateId: profile.id
-      }, function (err, user) {
-        if (err) {
-          return done(err, null);
-        }
-        if (!user) {
-          user = new User();
-          user.sitegateId = profile.id;
-          user.username = profile.username;
-          user.email = profile.email;
-          user.accessToken = accessToken;
-          user.refreshToken = refreshToken;
-
-          user.save(function (err, user) {
-            if (err) {
-              return done(err, null);
-            }
-            return done(null, user);
-          });
-          return;
-        }
-        return done(err, user);
-      });
+      User.getById({
+        id: profile.id
+      }, done);
     }
   ));
 };

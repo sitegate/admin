@@ -20,7 +20,7 @@ var config = {
       domain: 'https://account.sitegatedev.com:3000',
       clientId: 'AoMFA3Z1XvwtLj9558cC',
       clientSecret: 'X5iKRIPQICq0Hye2WqQX3GJWWR2AXD1nXwEfm6tq',
-      callbackURL: 'http://sitegatedev.com:3001/auth/sitegate/callback'
+      callbackURL: 'https://localhost:3040/auth/sitegate/callback'
     },
 	amqpURL: 'amqp://guest:guest@localhost:5672'
   },
