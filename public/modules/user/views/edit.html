@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Identity</div>
+  <div class="panel-body">
+    <form novalidate name="userForm">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" ng-model="user.username" class="form-control" validator="required">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" ng-model="user.email" class="form-control" validator="required, email">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="user.emailVerified"> Email verified
+        </label>
+      </div>
+      <label>Role</label>
+      <div class="radio">
+        <label>
+          <input type="radio" name="role" value="user"> User
+        </label>
+        <label>
+          <input type="radio" name="role" value="admin"> Admin
+        </label>
+      </div>
+      <button class="btn btn-primary" validation-submit="userForm">Save</button>
+  </div>
+  </form>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Password</div>
+  <div class="panel-body">
+    <form novalidate name="passwordForm">
+      <div class="form-group">
+        <label>New password</label>
+        <input type="text" ng-model="user.newPassword" class="form-control" validator="required">
+      </div>
+      <button class="btn btn-primary" validation-submit="passwordForm" ng-click="savePassword()">Save</button>
+    </form>
+  </div>
+</div>

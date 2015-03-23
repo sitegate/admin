@@ -6,5 +6,11 @@ html(ng-app="sitegate-admin")
     title
     link(href="/build/bundle.css" rel="stylesheet")
   body
-    .ui-view
+    header.navbar.navbar-static-top.navbar-default
+      .container
+        .navbar-header
+          a.navbar-brand(href="#") SiteGate
+        div(ui-view="header")
+    .container
+      .ui-view
     script(src="/build/bundle.js")

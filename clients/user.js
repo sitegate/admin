@@ -12,7 +12,7 @@ client.register([
   'sendVerificationEmail', 'register',
   'saveOAuthUserProfile', 'disconnectProvider',
   'trustClient', 'changePassword', 'verifyEmail',
-  'getTrustedClients', 'authenticate'
+  'getTrustedClients', 'authenticate', 'getAll'
 ]);
 
 module.exports = client.methods;

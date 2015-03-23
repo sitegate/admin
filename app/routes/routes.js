@@ -2,6 +2,7 @@
 
 var home = require('../controllers/home');
 var auth = require('../controllers/auth');
+var user = require('../controllers/user');
 var passport = require('passport');
 
 module.exports = function (app) {
@@ -14,6 +15,15 @@ module.exports = function (app) {
   
   app.route('/')
     .get(home.get);
+  
+  app.route('/api/user')
+    .get(user.getAll);
+  
+  app.route('/api/user/:userId')
+    .get(user.get);
+  
+  app.route('/api/user/:userId/password')
+    .put(user.putPassword);
 
   app.route('/auth/sitegate')
     .get(passport.authenticate('sitegate'));
