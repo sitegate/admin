@@ -39,7 +39,8 @@
     "angular-ui-bootstrap": "./public/components/angular-bootstrap/ui-bootstrap-tpls.min.js",
     "angular-ui-router": "./public/components/angular-ui-router/release/angular-ui-router.min.js",
     "angular-validation": "./public/components/angular-validation/dist/angular-validation.min.js",
-    "angular-validation-rule": "./public/components/angular-validation/dist/angular-validation-rule.min.js"
+    "angular-validation-rule": "./public/components/angular-validation/dist/angular-validation-rule.min.js",
+    "angular-growl": "./public/components/angular-growl-v2/build/angular-growl.min.js"
   },
   "browserify-shim": {},
   "dependencies": {

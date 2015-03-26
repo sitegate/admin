@@ -8,6 +8,7 @@ require('angular-ui-bootstrap');
 require('angular-ui-router');
 require('angular-validation');
 require('angular-validation-rule');
+require('angular-growl');
 
 //app entry point
 require('./app');
