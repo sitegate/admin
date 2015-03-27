@@ -40,7 +40,8 @@
     "angular-ui-router": "./public/components/angular-ui-router/release/angular-ui-router.min.js",
     "angular-validation": "./public/components/angular-validation/dist/angular-validation.min.js",
     "angular-validation-rule": "./public/components/angular-validation/dist/angular-validation-rule.min.js",
-    "angular-growl": "./public/components/angular-growl-v2/build/angular-growl.min.js"
+    "angular-growl": "./public/components/angular-growl-v2/build/angular-growl.min.js",
+    "angular-loading-bar": "./public/components/angular-loading-bar/build/loading-bar.min.js"
   },
   "browserify-shim": {},
   "dependencies": {

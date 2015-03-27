@@ -24,8 +24,7 @@ exports.get = function (req, res, next) {
 };
 
 exports.put = function (req, res, next) {
-  User.update({
-    id: req.params.userId,
+  User.update(req.params.userId, {
     username: req.body.username,
     email: req.body.email,
     emailVerified: req.body.emailVerified,

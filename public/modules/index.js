@@ -9,6 +9,7 @@ require('angular-ui-router');
 require('angular-validation');
 require('angular-validation-rule');
 require('angular-growl');
+require('angular-loading-bar');
 
 //app entry point
 require('./app');
