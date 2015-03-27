@@ -20,7 +20,8 @@ module.exports = function (app) {
     .get(user.getAll);
   
   app.route('/api/user/:userId')
-    .get(user.get);
+    .get(user.get)
+    .put(user.put);
   
   app.route('/api/user/:userId/password')
     .put(user.putPassword);

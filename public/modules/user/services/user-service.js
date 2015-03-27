@@ -2,7 +2,7 @@
 
 module.exports = ['$resource',
   function userService($resource) {
-    return $resource('/api/user/:userId', {}, {
+    return $resource('/api/user/:id', {}, {
       query: {
         method: 'GET',
         params: {},
@@ -10,6 +10,9 @@ module.exports = ['$resource',
       },
       get: {
         method: 'GET'
+      },
+      update: {
+        method:'PUT'
       }
     });
   }];

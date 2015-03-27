@@ -14,12 +14,27 @@ exports.getAll = function (req, res, next) {
 
 exports.get = function (req, res, next) {
   User.getById(req.params.userId, {
-    fields: ['username', 'email', 'emailVerified']
+    fields: ['username', 'email', 'emailVerified', 'role']
   }, function (err, user) {
     if (err) {
       return res.status(500).json(err);
     }
     return res.json(user);
+  });
+};
+
+exports.put = function (req, res, next) {
+  User.update({
+    id: req.params.userId,
+    username: req.body.username,
+    email: req.body.email,
+    emailVerified: req.body.emailVerified,
+    role: req.body.role
+  }, function (err, user) {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    return res.json({});
   });
 };
 

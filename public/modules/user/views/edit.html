@@ -18,13 +18,13 @@
       <label>Role</label>
       <div class="radio">
         <label>
-          <input type="radio" name="role" value="user"> User
+          <input type="radio" ng-model="user.role" value="user"> User
         </label>
         <label>
-          <input type="radio" name="role" value="admin"> Admin
+          <input type="radio" ng-model="user.role" value="admin"> Admin
         </label>
       </div>
-      <button class="btn btn-primary" validation-submit="userForm">Save</button>
+      <button class="btn btn-primary" validation-submit="userForm" ng-click="updateUser()">Save</button>
   </div>
   </form>
 </div>

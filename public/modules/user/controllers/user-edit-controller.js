@@ -3,8 +3,14 @@
 module.exports = ['$scope', '$stateParams', '$http', 'growl', 'UserService',
   function UserEditController($scope, $stateParams, $http, growl, UserService) {
     $scope.user = UserService.get({
-      userId: $stateParams.userId
+      id: $stateParams.userId
     });
+
+    $scope.updateUser = function () {
+      UserService.update({
+        id: $stateParams.userId
+      }, $scope.user);
+    };
 
     $scope.savePassword = function () {
       var data = {
@@ -14,7 +20,7 @@ module.exports = ['$scope', '$stateParams', '$http', 'growl', 'UserService',
       $http
         .put('/api/user/' + $stateParams.userId + '/password', data)
         .success(function (data, status, headers, config) {
-          growl.success('Saved', {
+          growl.success('Password updated!', {
             ttl: 3000
           });
         })
