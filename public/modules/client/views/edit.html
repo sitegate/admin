@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Client</div>
+  <div class="panel-body">
+    <form novalidate name="clientForm">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" ng-model="client.name" class="form-control" validator="required">
+      </div>
+      <button class="btn btn-primary" validation-submit="clientForm" ng-click="updateClient()">Save</button>
+  </div>
+  </form>
+</div>

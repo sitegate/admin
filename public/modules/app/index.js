@@ -15,6 +15,7 @@ module.exports =
     //useful directives, filters, services shared across the app
     require('../common').name,
     require('../user').name,
+    require('../client').name,
     //load extra app modules here, e.g.:
     //require('./frontend').name,
     //require('./admin').name

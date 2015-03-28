@@ -1,3 +1,5 @@
+'use strict';
+
 var User = require('../../clients/user');
 
 exports.getAll = function (req, res, next) {
@@ -13,7 +15,7 @@ exports.getAll = function (req, res, next) {
 };
 
 exports.get = function (req, res, next) {
-  User.getById(req.params.userId, {
+  User.getById(req.params.id, {
     fields: ['username', 'email', 'emailVerified', 'role']
   }, function (err, user) {
     if (err) {
@@ -24,7 +26,7 @@ exports.get = function (req, res, next) {
 };
 
 exports.put = function (req, res, next) {
-  User.update(req.params.userId, {
+  User.update(req.params.id, {
     username: req.body.username,
     email: req.body.email,
     emailVerified: req.body.emailVerified,
@@ -39,7 +41,7 @@ exports.put = function (req, res, next) {
 
 exports.putPassword = function (req, res, next) {
   User.changePassword({
-    userId: req.params.userId,
+    userId: req.params.id,
     newPassword: req.body.newPassword,
     forceNewPassword: true
   }, function (err) {

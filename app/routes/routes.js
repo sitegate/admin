@@ -3,6 +3,7 @@
 var home = require('../controllers/home');
 var auth = require('../controllers/auth');
 var user = require('../controllers/user');
+var client = require('../controllers/client');
 var passport = require('passport');
 
 module.exports = function (app) {
@@ -16,16 +17,30 @@ module.exports = function (app) {
   app.route('/')
     .get(home.get);
   
+  //
+  // User
+  //
   app.route('/api/user')
     .get(user.getAll);
   
-  app.route('/api/user/:userId')
+  app.route('/api/user/:id')
     .get(user.get)
     .put(user.put);
   
-  app.route('/api/user/:userId/password')
+  app.route('/api/user/:id/password')
     .put(user.putPassword);
+  
+  //
+  // Client
+  //
+  app.route('/api/client')
+    .get(client.getAll);
+  
+  app.route('/api/client/:id')
+    .get(client.get)
+    .put(client.put);
 
+  
   app.route('/auth/sitegate')
     .get(passport.authenticate('sitegate'));
 

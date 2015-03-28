@@ -11,6 +11,11 @@ html(ng-app="sitegate-admin")
       .container
         .navbar-header
           a.navbar-brand(href="#") SiteGate
+        ul.nav.navbar-nav
+          li
+            a(ui-sref="users") Users
+          li
+            a(ui-sref="clients") Clients
         div(ui-view="header")
     .container
       .ui-view

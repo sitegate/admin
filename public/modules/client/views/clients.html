@@ -1,0 +1,14 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="client in clients">
+      <td><a ui-sref=".edit({ clientId: client.id })" class="btn">Edit</a></td>
+      <td>{{client.name}}</td>
+    </tr>
+  </tbody>
+</table>
