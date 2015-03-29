@@ -13,21 +13,23 @@ var MongoStore = require('connect-mongo')(session);
 var glob = require('glob');
 var compress = require('compression');
 var config = require('./config');
+var path = require('path');
+var rootPath = path.normalize(__dirname + '/..');
 
 module.exports = function (db) {
   // Initialize express app
   var app = express();
 
   // Globbing model files
-  var models = glob.sync(config.root + '/app/models/**/*.js');
+  var models = glob.sync(rootPath + '/app/models/**/*.js');
   models.forEach(function (model) {
     require(model);
   });
 
-  app.set('views', config.root + '/app/views');
+  app.set('views', rootPath + '/app/views');
   app.set('view engine', 'jade');
   
-  // app.use(favicon(config.root + '/public/img/favicon.ico'));
+  // app.use(favicon(rootPath + '/public/img/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
@@ -42,10 +44,10 @@ module.exports = function (db) {
   app.use(session({
     saveUninitialized: true,
     resave: true,
-    secret: config.sessionSecret,
+    secret: config.get('session.secret'),
     store: new MongoStore({
       mongooseConnection: db.connection,
-      collection: config.sessionCollection
+      collection: config.get('session.collection')
     })
   }));
 
@@ -61,9 +63,9 @@ module.exports = function (db) {
   app.disable('x-powered-by');
 
   app.use(compress());
-  app.use(express.static(config.root + '/public'));
+  app.use(express.static(rootPath + '/public'));
 
-  var routes = glob.sync(config.root + '/app/routes/*.js');
+  var routes = glob.sync(rootPath + '/app/routes/*.js');
   routes.forEach(function (route) {
     require(route)(app);
   });

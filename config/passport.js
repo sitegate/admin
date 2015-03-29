@@ -21,10 +21,10 @@ module.exports = function () {
   });
 
   passport.use(new SiteGateStrategy({
-      providerOrigin: config.sitegate.domain,
-      clientID: config.sitegate.clientId,
-      clientSecret: config.sitegate.clientSecret,
-      callbackURL: config.sitegate.callbackURL
+      providerOrigin: config.get('sitegate.domain'),
+      clientID: config.get('sitegate.clientId'),
+      clientSecret: config.get('sitegate.clientSecret'),
+      callbackURL: config.get('sitegate.callbackURL')
     },
     function (accessToken, refreshToken, profile, done) {
       User.getById({

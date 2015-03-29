@@ -19,3 +19,6 @@ exports.oauthCallback = function (strategy) {
     })(req, res, next);
   };
 };
+
+exports.logout = function (req, res, next) {
+};

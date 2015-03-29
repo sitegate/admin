@@ -17,6 +17,9 @@ module.exports = function (app) {
   app.route('/')
     .get(home.get);
   
+  app.route('/logout')
+    .get(auth.logout);
+  
   //
   // User
   //

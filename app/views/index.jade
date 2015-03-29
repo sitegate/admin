@@ -3,7 +3,7 @@ html(ng-app="sitegate-admin")
   head
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    title
+    title SiteGate Admin
     link(href="/build/bundle.css" rel="stylesheet")
   body
     div(growl)
@@ -17,6 +17,9 @@ html(ng-app="sitegate-admin")
           li
             a(ui-sref="clients") Clients
         div(ui-view="header")
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href="/logout") Sign Out
     .container
       .ui-view
     script(src="/build/bundle.js")
