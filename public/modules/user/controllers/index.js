@@ -3,6 +3,7 @@
 module.exports = angular
   .module('sitegate-admin.user.controllers', [
     'sitegate-admin.user.services',
+    'sitegate-admin.client.services',
     'ui.router',
     'validation',
     'validation.rule',

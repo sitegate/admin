@@ -1,15 +1,23 @@
 'use strict';
 
-module.exports = ['$scope', '$stateParams', '$http', 'growl', 'UserService',
-  function UserEditController($scope, $stateParams, $http, growl, UserService) {
-    $scope.user = UserService.get({
+module.exports = ['$scope', '$stateParams', '$http', 'growl', 'UserService', 'ClientService',
+  function UserEditController($scope, $stateParams, $http, growl, User, Client) {
+    $scope.user = User.get({
       id: $stateParams.userId
+    });
+    
+    $scope.clients = Client.query({
+      creatorId: $stateParams.userId
     });
 
     $scope.updateUser = function () {
-      UserService.update({
+      User.update({
         id: $stateParams.userId
-      }, $scope.user);
+      }, $scope.user, function () {
+        growl.success('Saved!', {
+          ttl: 3000
+        });
+      });
     };
 
     $scope.savePassword = function () {

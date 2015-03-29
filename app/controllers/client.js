@@ -4,7 +4,8 @@ var Client = require('../../clients/client');
 
 exports.getAll = function (req, res, next) {
   Client.getAll({
-    count: req.query.count,
+    creatorId: req.query.creatorId,
+    count: req.query.count || 20,
     fields: ['name']
   }, function (err, clients) {
     if (err) {
@@ -16,7 +17,8 @@ exports.getAll = function (req, res, next) {
 
 exports.get = function (req, res, next) {
   Client.getById(req.params.id, {
-    fields: ['name']
+    fields: ['name', 'publicId', 'secret', 'description',
+             'homepageUrl', 'authCallbackUrl', 'trusted', 'userId']
   }, function (err, client) {
     if (err) {
       return res.status(500).json(err);
@@ -27,7 +29,11 @@ exports.get = function (req, res, next) {
 
 exports.put = function (req, res, next) {
   Client.update(req.params.id, {
-    name: req.body.name
+    name: req.body.name,
+    description: req.body.description,
+    homepageUrl: req.body.homepageUrl,
+    authCallbackUrl: req.body.authCallbackUrl,
+    trusted: req.body.trusted
   }, function (err) {
     if (err) {
       return res.status(500).json(err);

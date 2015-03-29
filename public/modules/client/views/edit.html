@@ -6,7 +6,42 @@
         <label>Name</label>
         <input type="text" ng-model="client.name" class="form-control" validator="required">
       </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea ng-model="client.description" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Homepage URL</label>
+        <input type="text" ng-model="client.homepageUrl" class="form-control" validator="required, url">
+      </div>
+      <div class="form-group">
+        <label>Callback URL</label>
+        <input type="text" ng-model="client.authCallbackUrl" class="form-control" validator="required, url">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-model="client.trusted"> trusted</label>
+        <div class="help-block">Doesn't require confirmation from the user to access user information.</div>
+      </div>
       <button class="btn btn-primary" validation-submit="clientForm" ng-click="updateClient()">Save</button>
   </div>
   </form>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Secrets</div>
+  <div class="panel-body">
+    <dl>
+      <dt>Public ID</dt>
+      <dd>{{client.publicId}}</dd>
+      <dt>Secret</dt>
+      <dd>{{client.secret}}</dd>
+    </dl>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Owner</div>
+  <div class="panel-body">
+    <a ui-sref="users.edit({ userId: owner.id })">{{owner.username}}</a>
+  </div>
 </div>

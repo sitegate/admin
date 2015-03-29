@@ -25,8 +25,8 @@
         </label>
       </div>
       <button class="btn btn-primary" validation-submit="userForm" ng-click="updateUser()">Save</button>
+    </form>
   </div>
-  </form>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">Password</div>
@@ -38,5 +38,14 @@
       </div>
       <button class="btn btn-primary" validation-submit="passwordForm" ng-click="savePassword()">Save</button>
     </form>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Apps</div>
+  <div class="panel-body">
+    <div ng-repeat="client in clients">
+      <a ui-sref="clients.edit({ clientId: client.id })">{{client.name}}</a>
+    </div>
   </div>
 </div>
