@@ -2,8 +2,8 @@
 
 var User = require('../../clients/user');
 
-exports.getAll = function (req, res, next) {
-  User.getAll({
+exports.query = function (req, res, next) {
+  User.query({
     count: req.query.count,
     fields: ['username', 'email', 'role']
   }, function (err, users) {

@@ -2,11 +2,11 @@
 
 var Client = require('../../clients/client');
 
-exports.getAll = function (req, res, next) {
-  Client.getAll({
+exports.query = function (req, res, next) {
+  Client.query({
     creatorId: req.query.creatorId,
     count: req.query.count || 20,
-    fields: ['name']
+    fields: ['name', 'homepageUrl']
   }, function (err, clients) {
     if (err) {
       return res.status(500).json(err);

@@ -3,12 +3,14 @@
     <tr>
       <th></th>
       <th>Name</th>
+      <th>Homepage URL</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="client in clients">
-      <td><a ui-sref=".edit({ clientId: client.id })" class="btn">Edit</a></td>
+      <td><a ui-sref=".edit({ clientId: client.id })" class="btn btn-default">Edit</a></td>
       <td>{{client.name}}</td>
+      <td><a ng-href="{{client.homepageUrl}}" target="_blank">{{client.homepageUrl}}</a></td>
     </tr>
   </tbody>
 </table>

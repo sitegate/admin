@@ -24,7 +24,7 @@ module.exports = function (app) {
   // User
   //
   app.route('/api/user')
-    .get(user.getAll);
+    .get(user.query);
   
   app.route('/api/user/:id')
     .get(user.get)
@@ -37,7 +37,7 @@ module.exports = function (app) {
   // Client
   //
   app.route('/api/client')
-    .get(client.getAll);
+    .get(client.query);
   
   app.route('/api/client/:id')
     .get(client.get)
