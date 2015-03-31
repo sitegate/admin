@@ -9,7 +9,8 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var helmet = require('helmet');
 var passport = require('passport');
-var MongoStore = require('connect-mongo')(session);
+var bograch = require('bograch');
+var BograchStore = require('connect-bograch')(session, bograch);
 var glob = require('glob');
 var compress = require('compression');
 var config = require('./config');
@@ -45,9 +46,8 @@ module.exports = function (db) {
     saveUninitialized: true,
     resave: true,
     secret: config.get('session.secret'),
-    store: new MongoStore({
-      mongooseConnection: db.connection,
-      collection: config.get('session.collection')
+    store: new BograchStore({
+      transporterName: 'amqp'
     })
   }));
 
