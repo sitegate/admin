@@ -27,9 +27,7 @@ module.exports = function () {
       callbackURL: config.get('sitegate.callbackURL')
     },
     function (accessToken, refreshToken, profile, done) {
-      User.getById({
-        id: profile.id
-      }, done);
+      User.getById(profile.id, done);
     }
   ));
 };

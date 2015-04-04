@@ -5,6 +5,10 @@ var mongoose = require('mongoose');
 var https = require('https');
 var fs = require('fs');
 
+if (config.get('env') === 'development') {
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}
+
 // Bootstrap db connection
 var db = mongoose.connect(config.get('mongodbURL'), function (err) {
   if (err) {
