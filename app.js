@@ -21,6 +21,8 @@ var app = require('./config/express')(db);
 // Bootstrap passport config
 require('./config/passport')();
 
+require('./config/setup-oauth');
+
 //TODO: Change these for your own certificates.  This was generated
 //through the commands:
 //openssl genrsa -out privatekey.pem 1024
