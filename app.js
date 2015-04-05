@@ -25,7 +25,9 @@ var app = require('./config/express')(db);
 // Bootstrap passport config
 require('./config/passport')();
 
-require('./config/setup-oauth');
+if (config.get('env') === 'development') {
+  require('./config/setup-oauth');
+}
 
 //TODO: Change these for your own certificates.  This was generated
 //through the commands:

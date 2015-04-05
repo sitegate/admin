@@ -12,7 +12,7 @@ Client.getByPublicId(config.get('sitegate.clientId'), function (err, client) {
     }, function (err, users) {
       if (users && users.length) {
         Client.create({
-          name: 'SiteGate Admin',
+          name: config.get('app.name'),
           publicId: config.get('sitegate.clientId'),
           secret: config.get('sitegate.clientSecret'),
           authCallbackUrl: config.get('sitegate.callbackURL'),
