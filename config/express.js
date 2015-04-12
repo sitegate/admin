@@ -17,7 +17,7 @@ var config = require('./config');
 var path = require('path');
 var rootPath = path.normalize(__dirname + '/..');
 
-module.exports = function (db) {
+module.exports = function () {
   // Initialize express app
   var app = express();
 
@@ -41,13 +41,13 @@ module.exports = function (db) {
   // CookieParser should be above session
   app.use(cookieParser());
 
-  // Express MongoDB session storage
+  // Express Bograch session storage
   app.use(session({
     saveUninitialized: true,
     resave: true,
     secret: config.get('session.secret'),
     store: new BograchStore('amqp', {
-      amqpURL: config.get('amqpURL')
+      amqpURL: config.get('amqpUrl')
     })
   }));
 

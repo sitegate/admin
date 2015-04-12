@@ -3,7 +3,6 @@
     "name": "sitegate-admin"
   },
   "port": 3040,
-  "mongodbURL": "mongodb://localhost/sitegate-admin-development",
   "session": {
     "secret": "sitegate-admin",
     "collection": "sessions"
@@ -14,5 +13,10 @@
     "clientSecret": "X5iKRIPQICq0Hye2WqQX3GJWWR2AXD1nXwEfm6tq",
     "callbackURL": "https://localhost:3040/auth/sitegate/callback"
   },
-  "amqpURL": "amqp://guest:guest@localhost:5672"
+  "amqp": {
+    "login": "guest",
+    "password": "guest",
+    "address": "localhost",
+    "port": "5672"
+  }
 }

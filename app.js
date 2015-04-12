@@ -1,7 +1,6 @@
 'use strict';
 
 var config = require('./config/config');
-var mongoose = require('mongoose');
 var https = require('https');
 var fs = require('fs');
 
@@ -9,18 +8,10 @@ if (config.get('env') === 'development') {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 }
 
-// Bootstrap db connection
-var db = mongoose.connect(config.get('mongodbURL'), function (err) {
-  if (err) {
-    console.error('\x1b[31m', 'Could not connect to MongoDB!');
-    console.log(err);
-  }
-});
-
 // Bootstrap bograch config
 require('./config/bograch');
 
-var app = require('./config/express')(db);
+var app = require('./config/express')();
 
 // Bootstrap passport config
 require('./config/passport')();
