@@ -1,8 +1,8 @@
 'use strict';
 
-var fs = require('fs'),
-  argv = require('yargs').argv,
-  tasks = fs.readdirSync('./gulp/tasks/');
+var fs = require('fs');
+var argv = require('yargs').argv;
+var tasks = fs.readdirSync(__dirname + '/tasks/');
 
 require('./config');
 
