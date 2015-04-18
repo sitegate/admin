@@ -5,20 +5,16 @@ var gulpif = require('gulp-if');
 var rename = require('gulp-rename');
 var csso = require('gulp-csso');
 var autoprefixer = require('gulp-autoprefixer');
-var less = require('gulp-less');
+var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
-
-
-function handleError(err) {
-  console.log(err.toString());
-  this.emit('end');
-}
-
 
 module.exports = gulp.task('styles', function () {
   return gulp.src(config.paths.src.styles)
     .pipe(gulpif(!release, sourcemaps.init()))
-    .pipe(less().on('error', handleError))
+    .pipe(sass({
+      errLogToConsole: true,
+      indentedSyntax: true
+    }))
     .pipe(autoprefixer('last 1 version'))
     .pipe(gulpif(release, csso()))
     .pipe(gulpif(!release, sourcemaps.write()))

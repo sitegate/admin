@@ -1,4 +1,3 @@
-/* jshint node:true */
 'use strict';
 
 var express = require('express');
@@ -17,84 +16,82 @@ var config = require('./config');
 var path = require('path');
 var rootPath = path.normalize(__dirname + '/..');
 
-module.exports = function () {
-  // Initialize express app
-  var app = express();
+// Initialize express app
+var app = express();
 
-  // Globbing model files
-  var models = glob.sync(rootPath + '/app/models/**/*.js');
-  models.forEach(function (model) {
-    require(model);
-  });
+// Globbing model files
+var models = glob.sync(rootPath + '/app/models/**/*.js');
+models.forEach(function (model) {
+  require(model);
+});
 
-  app.set('views', rootPath + '/app/views');
-  app.set('view engine', 'jade');
-  
-  // app.use(favicon(rootPath + '/public/img/favicon.ico'));
-  app.use(logger('dev'));
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }));
-  app.use(methodOverride());
+app.set('views', rootPath + '/app/views');
+app.set('view engine', 'jade');
 
-  // CookieParser should be above session
-  app.use(cookieParser());
+// app.use(favicon(rootPath + '/public/img/favicon.ico'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(methodOverride());
 
-  // Express Bograch session storage
-  app.use(session({
-    saveUninitialized: true,
-    resave: true,
-    secret: config.get('session.secret'),
-    store: new BograchStore('amqp', {
-      amqpURL: config.get('amqpUrl')
-    })
-  }));
+// CookieParser should be above session
+app.use(cookieParser());
 
-  // use passport session
-  app.use(passport.initialize());
-  app.use(passport.session());
+// Express Bograch session storage
+app.use(session({
+  saveUninitialized: true,
+  resave: true,
+  secret: config.get('session.secret'),
+  store: new BograchStore('amqp', {
+    amqpURL: config.get('amqpUrl')
+  })
+}));
 
-  // Use helmet to secure Express headers
-  app.use(helmet.xframe());
-  app.use(helmet.xssFilter());
-  app.use(helmet.nosniff());
-  app.use(helmet.ienoopen());
-  app.disable('x-powered-by');
+// use passport session
+app.use(passport.initialize());
+app.use(passport.session());
 
-  app.use(compress());
-  app.use(express.static(rootPath + '/public'));
+// Use helmet to secure Express headers
+app.use(helmet.xframe());
+app.use(helmet.xssFilter());
+app.use(helmet.nosniff());
+app.use(helmet.ienoopen());
+app.disable('x-powered-by');
 
-  var routes = glob.sync(rootPath + '/app/routes/*.js');
-  routes.forEach(function (route) {
-    require(route)(app);
-  });
+app.use(compress());
+app.use(express.static(rootPath + '/public'));
 
-  app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-  });
+var routes = glob.sync(rootPath + '/app/routes/*.js');
+routes.forEach(function (route) {
+  require(route)(app);
+});
 
-  if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
-      res.status(err.status || 500);
-      res.render('error', {
-        message: err.message,
-        error: err,
-        title: 'error'
-      });
-    });
-  }
+app.use(function (req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
+if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
-      error: {},
+      error: err,
       title: 'error'
     });
   });
+}
 
-  return app;
-};
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {},
+    title: 'error'
+  });
+});
+
+module.exports = app;

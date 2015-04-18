@@ -11,7 +11,7 @@ if (config.get('env') === 'development') {
 // Bootstrap bograch config
 require('./config/bograch');
 
-var app = require('./config/express')();
+var app = require('./config/express');
 
 // Bootstrap passport config
 require('./config/passport')();

@@ -6,11 +6,8 @@ var config = require('./config');
 
 Client.getByPublicId(config.get('sitegate.clientId'), function (err, client) {
   if (!client) {
-    User.query({
-      count: 1,
-      fields: ['username']
-    }, function (err, users) {
-      if (users && users.length) {
+    User.getByUsername('root', function (err, user) {
+      if (user) {
         Client.create({
           name: config.get('app.name'),
           publicId: config.get('sitegate.clientId'),
@@ -18,7 +15,7 @@ Client.getByPublicId(config.get('sitegate.clientId'), function (err, client) {
           authCallbackUrl: config.get('sitegate.callbackURL'),
           trusted: true,
           homepageUrl: 'https://localhost:3040',
-          userId: users[0].id
+          userId: user.id
         });
       }
     });

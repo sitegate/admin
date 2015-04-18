@@ -1,6 +1,8 @@
 'use strict';
 
 var util = require('util');
+var fs = require('fs');
+var yaml = require('js-yaml');
 var convict = require('convict');
 
 var config = convict({
@@ -81,7 +83,10 @@ var config = convict({
 
 // load environment dependent configuration
 var env = config.get('env');
-config.loadFile(__dirname + '/env/' + env + '.json');
+var filePath = __dirname + '/env/' + env + '.yml';
+var configFile = yaml.safeLoad(fs.readFileSync(filePath));
+
+config.load(configFile);
 
 // Adding the calculated values
 config.load({
