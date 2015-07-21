@@ -1,1 +1,4 @@
-# sitegate-admin [![Dependency Status](https://david-dm.org/zkochan/sitegate-admin/status.svg?style=flat)](https://david-dm.org/zkochan/sitegate-admin) [![Build Status](http://img.shields.io/travis/zkochan/sitegate-admin.svg?style=flat)](https://travis-ci.org/zkochan/sitegate-admin)
+# sitegate-admin
+
+[![Dependency Status](https://david-dm.org/sitegate/sitegate-admin/status.svg?style=flat)](https://david-dm.org/sitegate/sitegate-admin)
+[![Build Status](https://travis-ci.org/sitegate/sitegate-admin.svg?branch=master)](https://travis-ci.org/sitegate/sitegate-admin)
