@@ -1,14 +1,8 @@
 'use strict';
 
-var bo = require('bograch');
-var config = require('../config/config');
+var createClient = require('./create-client');
 
-var client = bo.client('amqp', {
-  name: 'user',
-  amqpURL: config.get('amqpUrl')
-});
-
-client.register([
+module.exports = createClient('user', [
   'getById',
   'getByUsername',
   'update',
@@ -26,7 +20,3 @@ client.register([
   'authenticate',
   'query'
 ]);
-
-client.connect();
-
-module.exports = client.methods;

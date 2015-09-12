@@ -8,8 +8,8 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var helmet = require('helmet');
 var passport = require('passport');
-var bograch = require('bograch');
-var BograchStore = require('connect-bograch')(session, bograch);
+var UvaStore = require('connect-uva')(session);
+var Client = require('uva-amqp').Client;
 var glob = require('glob');
 var compress = require('compression');
 var config = require('./config');
@@ -39,14 +39,15 @@ app.use(methodOverride());
 // CookieParser should be above session
 app.use(cookieParser());
 
-// Express Bograch session storage
+// Express Uva session storage
 app.use(session({
   saveUninitialized: true,
   resave: true,
   secret: config.get('session.secret'),
-  store: new BograchStore('amqp', {
-    amqpURL: config.get('amqpUrl')
-  })
+  store: new UvaStore(new Client({
+    channel: 'session',
+    url: config.get('amqpUrl')
+  }))
 }));
 
 // use passport session

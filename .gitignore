@@ -3,3 +3,4 @@ public/components
 .sass-cache
 public/build/
 public/tmp/
+dist

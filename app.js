@@ -8,9 +8,6 @@ if (config.get('env') === 'development') {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 }
 
-// Bootstrap bograch config
-require('./config/bograch');
-
 var app = require('./config/express');
 
 // Bootstrap passport config

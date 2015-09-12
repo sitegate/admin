@@ -5,14 +5,14 @@ module.exports = ['$stateProvider',
     $stateProvider
       .state('users', {
         url: '/user',
-        templateUrl: 'user/views/users.html',
+        template: require('../views/users.html'),
         controller: 'UsersController'
       })
       .state('users.edit', {
         url: '/edit/:userId',
         views: {
           '@': {
-            templateUrl: 'user/views/edit.html',
+            template: require('../views/edit.html'),
             controller: 'UserEditController'
           }
         }
