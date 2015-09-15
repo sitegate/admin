@@ -24,7 +24,7 @@
   "scripts": {},
   "devDependencies": {
     "fosify-js": "^0.6.0",
-    "fosify-sass": "^0.1.1",
+    "fosify-sass": "0.1.x",
     "foso": "^0.10.1",
     "gulp": "^3.9.0",
     "gulp-nodemon": "^2.0.4"
